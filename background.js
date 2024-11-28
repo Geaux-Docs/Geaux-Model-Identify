@@ -1,4 +1,10 @@
 // background.js
+// Handles:
+// - Network request interception
+// - Request filtering
+// - Data storage management
+// - Response capture
+
 let interceptedRequests = [];
 let keywords = ['openai', 'gpt', 'ai', 'llm', 'anthropic', 'huggingface'];
 
@@ -48,16 +54,5 @@ chrome.webRequest.onCompleted.addListener(
 );
 
 function shouldInterceptRequest(url) {
-        requestHeaders: {},
-        requestBody: details.requestBody,
-      };
-      
-      interceptedRequests.push(request);
-      chrome.storage.local.set({ requests: interceptedRequests });
-    }
-  },
-  { urls: ["<all_urls>"] },
-  ["requestBody"]
-);
-
-function shouldInterceptRequest
+  return keywords.some(keyword => url.includes(keyword));
+}

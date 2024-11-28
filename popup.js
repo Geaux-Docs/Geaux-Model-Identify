@@ -1,3 +1,9 @@
+// Features:
+// - Display intercepted requests
+// - Real-time updates
+// - Request details view
+// - Export functionality
+
 document.addEventListener("DOMContentLoaded", () => {
     chrome.storage.local.get("apiData", (data) => {
       const apiData = data.apiData || [];
@@ -15,4 +21,3 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   });
-  

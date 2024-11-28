@@ -1,0 +1,12 @@
+{
+    "github.copilot.chat.scopeSelection": true,
+    "github.copilot.chat.codeGeneration.useInstructionFiles": true,
+    "github.copilot.chat.generateTests.codeLens": true,
+    "github.copilot.chat.inlineChatCompletionTrigger.enabled": true,
+    "github.copilot.chat.inlineChatHint.enabled": true,
+    "github.copilot.chat.search.semanticTextResults": true,
+    "github.copilot.chat.setupTests.enabled": false,
+    "github.copilot.chat.temporalContext.enabled": true,
+    "github.copilot.chat.followUps": "always",
+    "github-enterprise.uri": "https://github.com/enterprises/geauxcode"
+}
