@@ -5,28 +5,28 @@
 // - Data storage management
 // - Response capture
 
-let interceptedRequests = [];
-let keywords = ['openai', 'gpt', 'ai', 'llm', 'anthropic', 'huggingface'];
+import { filterRequest } from './utils/filters.js';
+import { saveRequest } from './utils/storage.js';
+import { shouldInterceptRequest } from './utils/filters/index.js';
+import { saveRequests, getRequests } from './utils/storage.js';
 
-chrome.storage.local.get(['keywords'], (result) => {
-  if (result.keywords) {
-    keywords = result.keywords;
-  }
+
+let interceptedRequests = [];
+const keywords = ['openai', 'gpt', 'anthropic', 'huggingface'];
+
+chrome.runtime.onInstalled.addListener(() => {
+  chrome.storage.local.set({ keywords });
 });
 
 chrome.webRequest.onBeforeRequest.addListener(
-  async (details) => {
+  (details) => {
     if (shouldInterceptRequest(details.url)) {
       const request = {
         id: Date.now(),
-        timestamp: new Date().toISOString(),
         url: details.url,
         method: details.method,
-        type: details.type,
-        requestHeaders: {},
-        requestBody: details.requestBody,
+        timestamp: new Date().toISOString()
       };
-      
       interceptedRequests.push(request);
       chrome.storage.local.set({ requests: interceptedRequests });
     }

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AI API Monitor</title>
+  <style>
+    body { font-family: Arial, sans-serif; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+  </style>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="header">
+    <h1>AI API Monitor</h1>
+    <button id="exportBtn" class="export-btn">Export Data</button>
+  </div>
+  
+  <div class="controls">
+    <input type="text" id="search" class="search" placeholder="Search requests...">
+    <select id="filterMethod">
+      <option value="all">All Methods</option>
+      <option value="GET">GET</option>
+      <option value="POST">POST</option>
+    </select>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Timestamp</th>
+        <th>Method</th>
+        <th>URL</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="requestsTable"></tbody>
+  </table>
+
+  <script src="popup.js" type="module"></script>
+</body>
+</html>

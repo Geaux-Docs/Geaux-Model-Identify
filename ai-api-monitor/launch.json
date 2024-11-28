@@ -1,0 +1,30 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Firefox: Debug Extension",
+            "type": "firefox",
+            "request": "launch",
+            "reAttach": true,
+            "addonPath": "${workspaceFolder}",
+            "firefoxExecutable": "/usr/bin/firefox"
+        },
+        {
+            "name": "Chrome: Debug Extension",
+            "type": "chrome",
+            "request": "launch",
+            "runtimeExecutable": "google-chrome",
+            "runtimeArgs": [
+                "--load-extension=${workspaceFolder}"
+            ],
+            "sourceMaps": true,
+            "webRoot": "${workspaceFolder}"
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Debug in Both Browsers",
+            "configurations": ["Chrome: Debug Extension", "Firefox: Debug Extension"]
+        }
+    ]
+}

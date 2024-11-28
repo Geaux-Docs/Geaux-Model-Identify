@@ -1,9 +1,8 @@
-// manifest.json
 {
   "manifest_version": 3,
   "name": "AI API Monitor",
   "version": "1.0",
-  "description": "Monitor network traffic for AI-related API requests",
+  "description": "Monitor AI API calls",
   "permissions": [
     "webRequest",
     "storage",
@@ -16,12 +15,23 @@
     "service_worker": "background.js"
   },
   "action": {
-    "default_popup": "popup.html",
+    "default_popup": "popup/popup.html",
     "default_icon": {
       "16": "icons/icon16.png",
       "48": "icons/icon48.png",
       "128": "icons/icon128.png"
     }
   },
-  "options_page": "options.html"
+  "options_page": "options/options.html",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "ai-api-monitor@example.com",
+      "strict_min_version": "57.0"
+    }
+  }
 }

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AI API Monitor Settings</title>
+  <style>
+    body {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      font-family: system-ui;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    textarea {
+      width: 100%;
+      font-family: monospace;
+      padding: 10px;
+    }
+    .save-btn {
+      background: #4285f4;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>AI API Monitor Settings</h1>
+    <div>
+      <h2>Filter Keywords</h2>
+      <p>Enter keywords to monitor (one per line)</p>
+      <textarea id="keywords" rows="10"></textarea>
+    </div>
+    <button id="save" class="save-btn">Save Settings</button>
+  </div>
+  <script src="options.js"></script>
+</body>
+</html>
