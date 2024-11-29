@@ -1,0 +1,13 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "dev",
+			"path": "ai-api-monitor",
+			"problemMatcher": [],
+			"label": "npm: dev - ai-api-monitor",
+			"detail": "npm run clean && npm run build -- --mode=development"
+		}
+	]
+}

@@ -18,7 +18,8 @@
                 "--load-extension=${workspaceFolder}"
             ],
             "sourceMaps": true,
-            "webRoot": "${workspaceFolder}"
+            "webRoot": "${workspaceFolder}",
+            "preLaunchTask": "npm: build"
         }
     ],
     "compounds": [

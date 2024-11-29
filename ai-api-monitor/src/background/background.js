@@ -5,17 +5,29 @@
 // - Data storage management
 // - Response capture
 
-import { filterRequest } from './utils/filters.js';
-import { saveRequest } from './utils/storage.js';
-import { shouldInterceptRequest } from './utils/filters/index.js';
-import { saveRequests, getRequests } from './utils/storage.js';
+import { shouldInterceptRequest } from '@utils/filters';
+import { saveRequests, getRequests } from '@utils/storage';
 
+// Remove duplicate imports
+// import { filterRequest } from './utils/filters.js';
+// import { saveRequest } from './utils/storage.js';
+
+const init = async () => {
+  chrome.runtime.onInstalled.addListener(() => {
+    console.log('Extension installed');
+  });
+};
 
 let interceptedRequests = [];
 const keywords = ['openai', 'gpt', 'anthropic', 'huggingface'];
 
-chrome.runtime.onInstalled.addListener(() => {
-  chrome.storage.local.set({ keywords });
+// Single initialization
+chrome.runtime.onInstalled.addListener(async () => {
+  await chrome.storage.local.set({ 
+    keywords,
+    requests: []
+  });
+  console.log('Extension installed');
 });
 
 chrome.webRequest.onBeforeRequest.addListener(
@@ -25,10 +37,11 @@ chrome.webRequest.onBeforeRequest.addListener(
         id: Date.now(),
         url: details.url,
         method: details.method,
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
+        requestBody: details.requestBody
       };
       interceptedRequests.push(request);
-      chrome.storage.local.set({ requests: interceptedRequests });
+      saveRequests(interceptedRequests);
     }
   },
   { urls: ["<all_urls>"] },
@@ -53,6 +66,4 @@ chrome.webRequest.onCompleted.addListener(
   ["responseHeaders"]
 );
 
-function shouldInterceptRequest(url) {
-  return keywords.some(keyword => url.includes(keyword));
-}
+init().catch(console.error);

@@ -9,13 +9,15 @@
     "downloads"
   ],
   "host_permissions": [
-    "<all_urls>"
+    "*://*.openai.com/*",
+    "*://*.anthropic.com/*",
+    "*://*.huggingface.co/*"
   ],
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "background.bundle.js",
+    "type": "module"
   },
   "action": {
-    "default_popup": "popup/popup.html",
     "default_icon": {
       "16": "icons/icon16.png",
       "48": "icons/icon48.png",
@@ -33,5 +35,8 @@
       "id": "ai-api-monitor@example.com",
       "strict_min_version": "57.0"
     }
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
   }
 }

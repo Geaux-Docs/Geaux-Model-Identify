@@ -4,7 +4,7 @@
 // - Request details view
 // - Export functionality
 
-import { getRequests } from '../utils/storage.js';
+import { getRequests } from '@utils/storage';
 
 document.addEventListener('DOMContentLoaded', async () => {
   const requests = await getRequests();
